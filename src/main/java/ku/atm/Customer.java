@@ -19,6 +19,18 @@ public class Customer {
       account = new BankAccount(currentBalance);
    }
 
+   /**
+    Constructs a customer with a given number, PIN and account type.
+    @param aNumber the customer number
+    @param aPin the personal identification number
+    @param accountType the user identification.
+    */
+   public Customer(int aNumber, int aPin, double currentBalance, String accountType) {
+      customerNumber = aNumber;
+      pin = aPin;
+      account = new BankAccount(currentBalance, accountType);
+   }
+
    public Customer(int aNumber, int aPin) {
       this(aNumber, aPin, 0);
    }

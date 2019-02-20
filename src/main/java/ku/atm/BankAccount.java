@@ -6,13 +6,12 @@ package ku.atm;
 */
 public class BankAccount {
    private double balance;
+   private String accountType;
 
    /**
       Constructs a bank account with a zero balance.
    */
-   public BankAccount() {
-      balance = 0;
-   }
+   public BankAccount() { balance = 0; }
 
    /**
       Constructs a bank account with a given balance.
@@ -21,7 +20,16 @@ public class BankAccount {
    public BankAccount(double initialBalance) {
       balance = initialBalance;
    }
- 
+
+   /**
+    * Constructs a bank account with a given balance and account type.
+    * @param initialBalance
+    * @param accountType
+    */
+   public BankAccount(double initialBalance, String accountType) {
+      balance = initialBalance;
+      this.accountType = accountType;
+   }
    /** 
       Deposits money into the account.
       @param amount the amount of money to withdraw
@@ -36,8 +44,14 @@ public class BankAccount {
    */
    public void withdraw(double amount) throws NotEnoughBalanceException {
        if (amount > balance)
-         throw new NotEnoughBalanceException("cannot withdraw more than balance");
+          if (this.accountType.equals("normal")) {
+             throw new NotEnoughBalanceException("cannot withdraw more than balance");
+          }
        balance = balance - amount;
+   }
+
+   public String getAccountType() {
+      return accountType;
    }
 
    /** 
